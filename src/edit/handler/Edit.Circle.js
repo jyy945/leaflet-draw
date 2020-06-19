@@ -5,7 +5,7 @@ L.Edit = L.Edit || {};
  * @inherits L.Edit.CircleMarker
  */
 L.Edit.Circle = L.Edit.CircleMarker.extend({
-
+	// 创建边界marker用于改变图形形状
 	_createResizeMarker: function () {
 		var center = this._shape.getLatLng(),
 			resizemarkerPoint = this._getResizeMarkerPoint(center);
@@ -14,6 +14,7 @@ L.Edit.Circle = L.Edit.CircleMarker.extend({
 		this._resizeMarkers.push(this._createMarker(resizemarkerPoint, this.options.resizeIcon));
 	},
 
+	// 获取resize 的marker的坐标
 	_getResizeMarkerPoint: function (latlng) {
 		// From L.shape.getBounds()
 		var delta = this._shape._radius * Math.cos(Math.PI / 4),
