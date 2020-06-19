@@ -5,10 +5,11 @@ L.Edit = L.Edit || {};
  * @inherits L.Edit.SimpleShape
  */
 L.Edit.CircleMarker = L.Edit.SimpleShape.extend({
+	// 创建中心点marker用于移动图形
 	_createMoveMarker: function () {
 		var center = this._shape.getLatLng();
 
-		this._moveMarker = this._createMarker(center, this.options.moveIcon);
+		this._moveMarker = this._createMarker(center, this.options.moveIcon);	// 创建移动marker
 	},
 
 	_createResizeMarker: function () {

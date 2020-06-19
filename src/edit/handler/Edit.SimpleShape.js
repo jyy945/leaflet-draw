@@ -31,7 +31,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 			this.options.resizeIcon = this.options.touchResizeIcon;
 		}
 
-		this._shape = shape;
+		this._shape = shape;	// 原始图形
 		L.Util.setOptions(this, options);
 	},
 
@@ -46,7 +46,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 			if (shape._map) {
 				this._map = shape._map;
 				if (!this._markerGroup) {
-					this._initMarkers();
+					this._initMarkers();	// 创建marker
 				}
 				this._map.addLayer(this._markerGroup);
 			}
@@ -82,15 +82,16 @@ L.Edit.SimpleShape = L.Handler.extend({
 		this._initMarkers();
 	},
 
+	// 初始化marker
 	_initMarkers: function () {
 		if (!this._markerGroup) {
 			this._markerGroup = new L.LayerGroup();
 		}
 
-		// Create center marker
+		// 创建中心点marker用于移动图形
 		this._createMoveMarker();
 
-		// Create edge marker
+		// 创建边界marker用于改变图形形状
 		this._createResizeMarker();
 	},
 
@@ -102,6 +103,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 		// Children override
 	},
 
+	// 创建marker
 	_createMarker: function (latlng, icon) {
 		// Extending L.Marker in TouchEvents.js to include touch.
 		var marker = new L.Marker.Touch(latlng, {
@@ -110,7 +112,7 @@ L.Edit.SimpleShape = L.Handler.extend({
 			zIndexOffset: 10
 		});
 
-		this._bindMarker(marker);
+		this._bindMarker(marker);	// 为marker绑定事件
 
 		this._markerGroup.addLayer(marker);
 
